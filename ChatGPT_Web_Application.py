@@ -18,6 +18,10 @@
 #         message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
 
 
+
+
+import streamlit as st
+
 # this loop will let us ask questions continuously
 
 while True:
