@@ -1,4 +1,4 @@
-import streamlit as 
+import streamlit as st
 
 st.title("ChatGPT-like Web App")
 #storing the chat
