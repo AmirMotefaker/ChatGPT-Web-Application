@@ -5,7 +5,7 @@
 
 # Introduction
 
-- The ChatGPT(Generative Pre-trained Transformer) from [OpenAI](https://openai.com/) is one of the most potent chatbots. You can ask anything, and it will provide accurate responses. Additionally, OpenAI offers an API for use in programming. To start, in this project we’ll look at how to use the Python API to build a ChatGPT web app.
+- The ChatGPT(Generative Pre-trained Transformer) from [OpenAI](https://openai.com/) is one of the most potent chatbots. You can ask anything, and it will provide accurate responses. Additionally, OpenAI offers an API for use in programming. To start, in this project, we’ll look at how to use the Python API to build a ChatGPT web app.
 
 - ChatGPT, the general-purpose AI chatbot prototype that the internet is obsessed with right now, has taken the world by storm over the past few months. It’s quickly become the dominant example of the influence AI-generated content will have in the future, showing just how powerful these tools can be.
 
@@ -23,7 +23,7 @@
 
 - For example, inputting “explain how the solar system was made” will give a more detailed result with more paragraphs than “how was the solar system made,” even though both inquiries will give fairly detailed results.
 
-- Several services have integrated ChatGPT into their apps, as well. [Snapchat recently announced My AI](https://www.theverge.com/2023/2/27/23614959/snapchat-my-ai-chatbot-chatgpt-openai-plus-subscription), which is an AI model build on ChatGPT that will be integrated directly into the Snapchat app, for example.
+- Several services have integrated ChatGPT into their apps, as well. [Snapchat recently announced My AI](https://www.theverge.com/2023/2/27/23614959/snapchat-my-ai-chatbot-chatgpt-openai-plus-subscription), which is an AI model built on ChatGPT that will be integrated directly into the Snapchat app, for example.
 
 # How to register an OpenAI account
 
@@ -33,7 +33,7 @@
 
 - In recent years, artificial intelligence (AI) has come to be seen as a powerful tool with the potential to transform many aspects of our lives. One area in which AI is beginning to have a significant impact is chatbots.
 
-- Chatbots are computer programs that simulate human conversation. They are commonly used to provide customer service or support, but they can also be used for other purposes such as marketing or even entertainment.
+- Chatbots are computer programs that simulate human conversation. They are commonly used to provide customer service or support, but they can also be used for other purposes, such as marketing or even entertainment.
 
 - You can see 100 of the best ChatGPT prompts in detail by referring to this [link](https://mpost.io/100-best-chatgpt-prompts-to-unleash-ais-potential/).
 
