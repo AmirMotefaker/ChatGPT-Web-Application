@@ -1,4 +1,4 @@
-# ChatGPT Web Aplication
+# ChatGPT Web Application
 
 ### Create Your ChatGPT Web App with Streamlit in Python
 
@@ -25,7 +25,7 @@
 
 - Several services have integrated ChatGPT into their apps, as well. [Snapchat recently announced My AI](https://www.theverge.com/2023/2/27/23614959/snapchat-my-ai-chatbot-chatgpt-openai-plus-subscription), which is an AI model built on ChatGPT that will be integrated directly into the Snapchat app, for example.
 
-# How to register an OpenAI account
+# How to register for an OpenAI account
 
 - Using the ChatGPT chatbot is fairly simple, as all you have to do is type in your text and receive the information. However, OpenAI does require an account before you can use any of its tools, so if you don’t have one, you will have to register. You have the option of choosing an easy login with a Google or Microsoft account.
 
