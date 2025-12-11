@@ -1,4 +1,4 @@
-# ChatGPT Web Applicaon
+# ChatGPT Web Application
 
 ### Create Your ChatGPT Web App with Streamlit in Python
 
@@ -19,7 +19,7 @@
 
 # How to use ChatGPT
 
-- The ChatGPT webpage is simple and includes an area for the results to populate and a text box at the bottom of the page for users to type inquiries. We started with questions, however, OpenAI recommends inputting a statement for the best possible result.
+- The ChatGPT webpage is simple and includes an area for the results to populate and a text box at the bottom of the page for users to type inquiries. We started with questions; however, OpenAI recommends inputting a statement for the best possible result.
 
 - For example, inputting “explain how the solar system was made” will give a more detailed result with more paragraphs than “how was the solar system made,” even though both inquiries will give fairly detailed results.
 
