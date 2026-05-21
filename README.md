@@ -1,6 +1,6 @@
 # ChatGPT Web Application
 
-### Create Your ChatGPT Web App with Strmlit in Python
+### Create Your ChtGPT Web App with Strmlit in Python
 
 
 # Introduction
