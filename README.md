@@ -1,6 +1,6 @@
 # ChatGPT Web Application
 
-### Create Your ChatGPT Web App with Stramlit in Python
+### Create Your ChatGPT Web App with Streamlit in Python
 
 
 # Introducion
