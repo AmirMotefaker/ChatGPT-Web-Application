@@ -1,52 +1,122 @@
-# ChatGPT Web Application — Streamlit & Gradio Experiments
+# ChatGPT Web Application — Modern Responses API + Legacy Experiments
 
 [![GitHub stars](https://img.shields.io/github/stars/AmirMotefaker/ChatGPT-Web-Application?style=flat&logo=github)](https://github.com/AmirMotefaker/ChatGPT-Web-Application/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/AmirMotefaker/ChatGPT-Web-Application?style=flat&logo=github)](https://github.com/AmirMotefaker/ChatGPT-Web-Application/network/members)
-[![Python](https://img.shields.io/badge/Python-Streamlit%20%2B%20Gradio-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![Python modernization](https://github.com/AmirMotefaker/ChatGPT-Web-Application/actions/workflows/python-modernization.yml/badge.svg)](https://github.com/AmirMotefaker/ChatGPT-Web-Application/actions/workflows/python-modernization.yml)
 
-An educational archive of early Python experiments for building ChatGPT-style interfaces with Streamlit, Gradio, Jupyter, Colab, and Kaggle.
+A runnable Streamlit chat application using the modern OpenAI Responses API, while preserving the project's original Colab/Kaggle/Gradio notebooks as historical learning material.
 
-> [!IMPORTANT]
-> **Legacy educational project.** The current Python example uses `text-davinci-003` and `openai.Completion.create`, which belong to an older OpenAI API generation. The repository is valuable as a historical learning project, but the code should be modernized before being treated as a current production template.
+## Modern 2026 application
 
-## Repository contents
+[`ChatGPT_Web_Application.py`](ChatGPT_Web_Application.py) is now the supported application entrypoint.
 
-| File | Purpose |
-| --- | --- |
-| [`ChatGPT_Web_Application.py`](ChatGPT_Web_Application.py) | Python/Streamlit experiment |
-| [`ChatGPT_Web_Application_colab.ipynb`](ChatGPT_Web_Application_colab.ipynb) | Colab notebook |
-| [`ChatGPT_Web_Application_using_Streamlit_colab.ipynb`](ChatGPT_Web_Application_using_Streamlit_colab.ipynb) | Streamlit-focused Colab example |
-| [`ChatGPT_Web_Application_using_Gradio_colab.ipynb`](ChatGPT_Web_Application_using_Gradio_colab.ipynb) | Gradio-focused Colab example |
-| [`chatgpt-web-application-kaggle.ipynb`](chatgpt-web-application-kaggle.ipynb) | Kaggle notebook |
-| [`chatgpt-web-application-using-gradio.ipynb`](chatgpt-web-application-using-gradio.ipynb) | Gradio notebook |
+The app uses:
 
-## What the project demonstrates
+- the official OpenAI Python SDK
+- `client.responses.create(...)`
+- `response.output_text`
+- `OPENAI_API_KEY` from the environment
+- `previous_response_id` for multi-turn conversation state
+- Streamlit chat components
+- `gpt-5.5` as the default model, overridable with `OPENAI_MODEL` or the sidebar
 
-- Prompt/response experimentation in Python
-- Early OpenAI Completion API usage
-- Streamlit interface concepts
-- Gradio-based notebook experiments
-- Jupyter/Colab/Kaggle workflows
-
-## Quick start for code review
+### Setup
 
 ```bash
 git clone https://github.com/AmirMotefaker/ChatGPT-Web-Application.git
 cd ChatGPT-Web-Application
+python -m venv .venv
 ```
 
-Review the notebooks and Python file before executing them. The API calls and model identifiers are legacy and may require modernization.
+Activate it:
 
-> [!CAUTION]
-> Do not hard-code or commit API credentials. Keep secrets outside the repository.
+```powershell
+# Windows PowerShell
+.venv\Scripts\Activate.ps1
+```
 
-## Modernization roadmap
+```bash
+# macOS / Linux
+source .venv/bin/activate
+```
 
-The next code milestone should update the API integration, dependency management, secret handling, runnable examples, and basic validation. Keeping that work separate makes the repository history clear: **README modernization first, code modernization second.**
+Install dependencies:
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+Set the API key locally:
+
+```powershell
+$env:OPENAI_API_KEY = "your-key-here"
+```
+
+or:
+
+```bash
+export OPENAI_API_KEY="your-key-here"
+```
+
+Run the app:
+
+```bash
+streamlit run ChatGPT_Web_Application.py
+```
+
+The sidebar lets you change the model and clear the current conversation. Changing the model resets the stored response chain to avoid mixing conversation state across models.
+
+## Architecture
+
+```text
+Streamlit UI
+    |
+    v
+ChatGPT_Web_Application.py
+    |
+    v
+openai_service.py
+    |
+    v
+OpenAI Responses API
+```
+
+`openai_service.py` isolates the API call from the UI and makes the Responses API contract testable without making paid network requests.
+
+## Historical notebooks
+
+These files are preserved as an archive of the original project:
+
+| File | Status |
+| --- | --- |
+| `ChatGPT_Web_Application_colab.ipynb` | Legacy educational notebook |
+| `ChatGPT_Web_Application_using_Streamlit_colab.ipynb` | Legacy Streamlit/Colab notebook |
+| `ChatGPT_Web_Application_using_Gradio_colab.ipynb` | Legacy Gradio/Colab notebook |
+| `chatgpt-web-application-kaggle.ipynb` | Legacy Kaggle notebook |
+| `chatgpt-web-application-using-gradio.ipynb` | Legacy Gradio notebook |
+
+> [!IMPORTANT]
+> The historical notebooks can contain old model names or deprecated OpenAI API patterns. The root Streamlit application is the modern supported path.
+
+## Validation
+
+```bash
+python -m unittest discover -s tests -v
+python -m compileall -q .
+```
+
+GitHub Actions validates the modernization on Python 3.10 and 3.12 and performs offline unit tests, syntax compilation, secret-pattern scanning, and a guard against legacy API usage in modern entrypoints.
+
+## Security
+
+- Never hard-code an API key.
+- Use `OPENAI_API_KEY` in your environment or secret manager.
+- `.env` and Streamlit secret files are ignored.
+- CI does not make live OpenAI API requests.
 
 ## Support the project
 
-If these early Streamlit/Gradio experiments are useful as a learning reference, consider giving the repository a ⭐.
+If the modern Streamlit example or legacy learning material helps you, consider giving the repository a ⭐.
 
 ## Author
 
