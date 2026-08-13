@@ -1,71 +1,82 @@
-# import streamlit as st
+from __future__ import annotations
 
-# st.title("ChatGPT-like Web App")
-# #storing the chat
-# if 'generated' not in st.session_state:
-#     st.session_state['generated'] = []
-# if 'past' not in st.session_state:
-#     st.session_state['past'] = []
-# user_input=st.text_input("You:",key='input')
-# if user_input:
-#     output=generate_response(user_input)
-#     #store the output
-#     st.session_state['past'].append(user_input)
-#     st.session_state['generated'].append(output)
-# if st.session_state['generated']:
-#     for i in range(len(st.session_state['generated'])-1, -1, -1):
-#         message(st.session_state["generated"][i], key=str(i))
-#         message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
-
-
-
+import os
 
 import streamlit as st
 
-# this loop will let us ask questions continuously
+from openai_service import DEFAULT_MODEL, generate_response
 
-while True:
-    
-    # Set up the model and prompt
-    model_engine = "text-davinci-003"
-    
-    prompt = input('Enter new prompt: ')
+st.set_page_config(
+    page_title="ChatGPT-style Responses API Demo",
+    page_icon="💬",
+)
 
-    if 'exit' in prompt or 'quit' in prompt:
-        break
+st.title("ChatGPT-style Web Application")
+st.caption("Modern OpenAI Responses API + Streamlit")
 
-    # Generate a response
-    # given the most recent context (4096 characters)
-    # continue the text up to 2048 tokens ~ 8192 charaters
-    completion = openai.Completion.create(
-        engine=model_engine,
-        prompt=prompt,
-        max_tokens=1024,
-        n=1,
-        stop=None,
-        temperature=0.5,
-    )
-    
-    # extracting useful part of response
-    response = completion.choices[0].text
-    
-    # printing response
-    print(response)
+if "messages" not in st.session_state:
+    st.session_state.messages = []
 
-    
-st.title("ChatGPT-like Web App")
-#storing the chat
-if 'generated' not in st.session_state:
-    st.session_state['generated'] = []
-if 'past' not in st.session_state:
-    st.session_state['past'] = []
-user_input=st.text_input("You:",key='input')
-if user_input:
-    output=generate_response(user_input)
-    #store the output
-    st.session_state['past'].append(user_input)
-    st.session_state['generated'].append(output)
-if st.session_state['generated']:
-    for i in range(len(st.session_state['generated'])-1, -1, -1):
-        message(st.session_state["generated"][i], key=str(i))
-        message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
+if "previous_response_id" not in st.session_state:
+    st.session_state.previous_response_id = None
+
+if "active_model" not in st.session_state:
+    st.session_state.active_model = DEFAULT_MODEL
+
+with st.sidebar:
+    st.header("Settings")
+    model = st.text_input(
+        "Model",
+        value=st.session_state.active_model,
+        help="Default comes from OPENAI_MODEL or falls back to gpt-5.5.",
+    ).strip()
+
+    if not model:
+        model = DEFAULT_MODEL
+
+    if model != st.session_state.active_model:
+        st.session_state.active_model = model
+        st.session_state.previous_response_id = None
+        st.session_state.messages = []
+        st.info("Conversation reset because the model changed.")
+
+    if st.button("Clear conversation", use_container_width=True):
+        st.session_state.messages = []
+        st.session_state.previous_response_id = None
+        st.rerun()
+
+    st.markdown("---")
+    if os.getenv("OPENAI_API_KEY"):
+        st.success("OPENAI_API_KEY detected.")
+    else:
+        st.warning("Set OPENAI_API_KEY in the environment before sending a message.")
+
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
+
+prompt = st.chat_input("Ask something...")
+
+if prompt:
+    st.session_state.messages.append({"role": "user", "content": prompt})
+
+    with st.chat_message("user"):
+        st.markdown(prompt)
+
+    try:
+        with st.chat_message("assistant"):
+            with st.spinner("Thinking..."):
+                answer, response_id = generate_response(
+                    prompt,
+                    model=st.session_state.active_model,
+                    previous_response_id=st.session_state.previous_response_id,
+                )
+            st.markdown(answer)
+
+        st.session_state.messages.append(
+            {"role": "assistant", "content": answer}
+        )
+        st.session_state.previous_response_id = response_id
+
+    except Exception as exc:
+        st.error(f"OpenAI request failed: {type(exc).__name__}: {exc}")
