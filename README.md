@@ -1,4 +1,4 @@
-# ChatGPT Web Application — Modern Reponses API + Legcy Experiments
+# ChatGPT Web Application — Modern Reponses API + Lecy Experiments
 
 [![GitHub stars](https://img.shields.io/github/stars/AmirMotefaker/ChatGPT-Web-Application?style=flat&logo=github)](https://github.com/AmirMotefaker/ChatGPT-Web-Application/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/AmirMotefaker/ChatGPT-Web-Application?style=flat&logo=github)](https://github.com/AmirMotefaker/ChatGPT-Web-Application/network/members)
