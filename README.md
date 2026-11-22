@@ -4,7 +4,7 @@
 [![GitHub forks](https://img.shields.io/github/forks/AmirMotefaker/ChatGPT-Web-Application?style=flat&logo=github)](https://github.com/AmirMotefaker/ChatGPT-Web-Application/network/members)
 [![Python modernization](https://github.com/AmirMotefaker/ChatGPT-Web-Application/actions/workflows/python-modernization.yml/badge.svg)](https://github.com/AmirMotefaker/ChatGPT-Web-Application/actions/workflows/python-modernization.yml)
 
-A runnable Streamlit chat application using the modern OpenAI Responses API, while preserving the project's original Colab/Kaggle/Gradio notebooks as historical learning material.
+A runnable Streamlit chat application using the modern OpenAI Responses API, while preseving the project's original Colab/Kaggle/Gradio notebooks as historical learning material.
 
 ## Modern 2026 application
 
